@@ -1,0 +1,15 @@
+product_index:
+    path:     /
+    defaults: {_controller: ShoppingCardBundle:Default:index}
+
+product_create:
+    path:     /create
+    defaults: {_controller: ShoppingCardBundle:Default:create}
+
+product_edit:
+    path:     /edit/{id}
+    defaults: {_controller: ShoppingCardBundle:Default:edit}
+
+product_delete:
+    path:     /delete/{id}
+    defaults: {_controller: ShoppingCardBundle:Default:delete}

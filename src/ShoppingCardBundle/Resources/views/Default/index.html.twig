@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>Product List</h1>
+    <table class="table table-condensed table-hover" style="width:100%">
+        <tr>
+
+            <th>{{ knp_pagination_sortable(paginator, 'Name', 'name')}}</th>
+            <th>{{ knp_pagination_sortable(paginator, 'Category', 'category')}}</th>
+            <th>{{ knp_pagination_sortable(paginator, 'Description', 'description')}}</th>
+            <th>{{ knp_pagination_sortable(paginator, 'Price', 'price')}}</th>
+        </tr>
+        {% for item in paginator %}
+            <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.category }}</td>
+                <td>{{ item.description }}</td>
+                <td>{{ item.price }}</td>
+                <td>
+                    <a href="{{ path('product_edit', {id:item.id}) }}"
+                       class="btn btn-lg btn-success" type="submit">Edit</a>
+                    <a href="{{ path('product_delete', {id:item.id}) }}"
+                       class="btn btn-lg btn-danger" type="submit">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <div class="navigation text-center">
+        {{ knp_pagination_render(paginator) }}
+    </div>
+{% endblock %}
+
+
+

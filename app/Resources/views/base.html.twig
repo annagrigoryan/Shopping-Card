@@ -44,7 +44,7 @@
         </div>
     </div>
 </nav>
-<div style="margin-top:60px">
+<div style="margin-top:60px; margin-left: 50px" >
     {% for type, flash_messages in app.session.flashBag.all %}
         {% for flash_message in flash_messages %}
             <div class="flash-{{ type }}">

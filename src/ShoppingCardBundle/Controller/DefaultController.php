@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 
+
+
 class DefaultController extends Controller
 {
 
@@ -17,26 +19,31 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
 
+        $searchQuery =  $request->query->get('query');
         $query = $this->get('doctrine_mongodb')
             ->getManager()
             ->createQueryBuilder('ShoppingCardBundle:Product');
 
+        if($searchQuery){
+            $query->field('name')->equals(new \MongoRegex('/^'.$searchQuery.'.*/'));
+        }
         $query = $query->getQuery();
+
         /**
          * @var  $paginator \Knp\Component\Pager\Paginator
          */
-
         $paginator = $this->get('knp_paginator');
         $result = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            5
+            10
         );
 
 
         return $this->render('@ShoppingCard/Default/index.html.twig',
             array('paginator' => $result));
     }
+
 
 
     public function createAction(Request $request)
@@ -122,6 +129,8 @@ class DefaultController extends Controller
     }
 
 }
+
+
 
 
 

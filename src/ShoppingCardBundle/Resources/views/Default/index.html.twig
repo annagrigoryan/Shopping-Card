@@ -3,6 +3,14 @@
 
 {% block body %}
     <h1>Product List</h1>
+    <div>
+        <form action="{{ path('product_index') }}">
+        <input type="search"  name="query" placeholder="Search" required="required"/>
+        <input type="submit"
+               class="btn btn-success" />
+            </form>
+    </div>
+
     <table class="table table-condensed table-hover" style="width:100%">
         <tr>
 
@@ -26,6 +34,8 @@
             </tr>
         {% endfor %}
     </table>
+
+
 
     <div class="navigation text-center">
         {{ knp_pagination_render(paginator) }}

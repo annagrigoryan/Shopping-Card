@@ -25,7 +25,7 @@ class DefaultController extends Controller
             ->createQueryBuilder('ShoppingCardBundle:Product');
 
         if($searchQuery){
-            $query->field('name')->equals(new \MongoRegex('/^'.$searchQuery.'.*/'));
+            $query->field('name')->equals(new \MongoRegex('/.*'.$searchQuery.'.*/i'));
         }
         $query = $query->getQuery();
 

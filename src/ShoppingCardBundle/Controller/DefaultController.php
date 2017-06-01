@@ -36,7 +36,7 @@ class DefaultController extends Controller
         $result = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            1
+            5
         );
 
 

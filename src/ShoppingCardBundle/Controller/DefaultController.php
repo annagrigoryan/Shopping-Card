@@ -36,7 +36,7 @@ class DefaultController extends Controller
         $result = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            10
+            5
         );
 
 
@@ -65,7 +65,6 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $product = $form->getData();
-
 
             $dm = $this->get('doctrine_mongodb')->getManager();
             $dm->persist($product);
